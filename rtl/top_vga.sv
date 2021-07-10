@@ -7,6 +7,8 @@ module top_vga (
     output logic[5:0] VGA_B,
     output logic VGA_HSYNC,
     output logic VGA_VSYNC,
+    output logic vga_adv7123_clk,
+    output logic vga_adv7123_blank,
     input PS2_CLOCK,
     input PS2_DATA
   );
@@ -47,6 +49,11 @@ module top_vga (
   wire clk_calc;
   wire clk_pixel;
   vga_clock  #(.VIDEO_ID_CODE(3)) vga_clock_inst (.clk_33(CLOCK_33), .clk_pixel(clk_pixel));
+  
+  assign vga_adv7123_clk = clk_pixel;
+  assign vga_adv7123_blank = 1;
+
+
 
   pll_xilinx #(.MULT(calc_clock_mult), .DIV(calc_clock_div), .CLKIN_PERIOD(30.0)) pll1
              (

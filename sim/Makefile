@@ -7,7 +7,8 @@ SOURCE_MAIN_HDMI_V = top_hdmi_sim.sv
 
 FLAGS := -Wall -Wno-TIMESCALEMOD -Wno-UNUSED  --trace -cc 
 CFLAGS := -Os
-LDFLAGS  := -L$(ROOT_DIR)/minifb/build/ -lX11 -lminifb
+#LDFLAGS  := -L$(ROOT_DIR)/minifb/build/ -lX11 -lminifb
+LDFLAGS  := -L$(ROOT_DIR)/minifb/build -lminifb -L/usr/lib/x86_64-linux-gnu/ -lX11
 
 all: vgasim_vga_window Vvgasim_vga_bitmap vgasim_hdmi_window
 
