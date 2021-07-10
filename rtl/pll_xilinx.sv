@@ -1,7 +1,7 @@
 `timescale 1ns / 1ns
 
 module pll_xilinx
-  #(parameter MULT = 39, DIV = 20, CLKIN_PERIOD = 30.0)
+  #(parameter MULT = 39, DIV = 20, CLKIN_PERIOD = 20.0)
 
    (
      input         clk_in,

@@ -146,7 +146,8 @@ module mmcm_xilinx
       .CLKIN1              (clk_in),
       .CLKIN2              (1'b0),
       // Tied to always select the primary input clock
-      .CLKINSEL            (1'b1),
+//      .CLKINSEL            (1'b1),
+      .CLKINSEL            (1'b0),
       // Ports for dynamic reconfiguration
       .DADDR               (7'h0),
       .DCLK                (1'b0),

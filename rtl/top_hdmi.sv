@@ -1,7 +1,7 @@
 `timescale 1ns / 1ns
 
 module top_hdmi (
-    input CLOCK_50,
+    input CLOCK_33,
 
     output [2:0] HDMI_TX,
     output [2:0] HDMI_TX_N,
@@ -12,7 +12,8 @@ module top_hdmi (
     input PS2_DATA
   );
 
-  localparam USE_XILINX_BLOCKRAM = 1;
+//  localparam USE_XILINX_BLOCKRAM = 1;
+  localparam USE_XILINX_BLOCKRAM = 0;
 
   localparam key_up = "w";
   localparam key_down = "s";
@@ -42,7 +43,8 @@ module top_hdmi (
   // 1:  640x480     25.2  MHz
   // 4:  1280x720    74.25 MHz
   // 16: 1920x1080  148.5  MHz
-  localparam vidio_id_code = 4;
+  //localparam vidio_id_code = 4;
+  localparam vidio_id_code = 1;
   localparam w_bit_max = vidio_id_code == 1? 9 : 10;
   localparam h_bit_max = vidio_id_code <= 4? 9 : 10;
 
@@ -51,13 +53,13 @@ module top_hdmi (
   wire clk_pixel;
   wire clk_pixel_x5;
 
-  pll_xilinx #(.MULT(calc_clock_mult), .DIV(calc_clock_div), .CLKIN_PERIOD(30.0)) pll1
+  pll_xilinx #(.MULT(calc_clock_mult), .DIV(calc_clock_div), .CLKIN_PERIOD(20.0)) pll1
              (
-               .clk_in(CLOCK_50),
+               .clk_in(CLOCK_33),
                .clk_out(clk_calc)
              );
 
-  hdmi_clock #(.VIDEO_ID_CODE(vidio_id_code)) hdmi_clock (.clk_50(CLOCK_50), .clk_pixel(clk_pixel), .clk_pixel_x5(clk_pixel_x5));
+  hdmi_clock #(.VIDEO_ID_CODE(vidio_id_code)) hdmi_clock (.clk_33(CLOCK_33), .clk_pixel(clk_pixel), .clk_pixel_x5(clk_pixel_x5));
 
 
   logic [23:0] rgb;
@@ -106,7 +108,7 @@ module top_hdmi (
   top_common #
     (
       .USE_XILINX_BLOCKRAM(USE_XILINX_BLOCKRAM),
-      .clk_sys_freq(50000000),
+      .clk_sys_freq(33333333),
       .key_up(key_up),
       .key_down(key_down),
       .key_left(key_left),
@@ -121,7 +123,7 @@ module top_hdmi (
       .fp_top(fp_top),
       .fp_bot(fp_bot)
     ) top_common (
-      .clk_sys(CLOCK_50),
+      .clk_sys(CLOCK_33),
       .clk_calc(clk_calc),
       .clk_pixel(clk_pixel),
 
