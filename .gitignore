@@ -79,3 +79,10 @@ xvlog.*
 
 ## checkpoint files
 *.dcp
+
+## Doxygen output
+html
+
+## Backups
+*~
+

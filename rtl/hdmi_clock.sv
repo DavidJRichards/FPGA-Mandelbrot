@@ -5,7 +5,7 @@ module hdmi_clock
      parameter int VIDEO_ID_CODE = 1
    )
    (
-     input logic clk_33,
+     input logic clk_50,
      output logic clk_pixel,
      output logic clk_pixel_x5
    );

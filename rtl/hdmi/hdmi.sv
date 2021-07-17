@@ -10,6 +10,7 @@ module hdmi
 
     // Defaults to minimum bit lengths required to represent positions.
     // Modify these parameters if you have alternate desired bit lengths.
+    // djrm, use like this when using doxygen: parameter int BIT_WIDTH = VIDEO_ID_CODE "<" 4 ? 10 : VIDEO_ID_CODE == 4 ? 11 : 12,
     parameter int BIT_WIDTH = VIDEO_ID_CODE < 4 ? 10 : VIDEO_ID_CODE == 4 ? 11 : 12,
     parameter int BIT_HEIGHT = VIDEO_ID_CODE == 16 ? 11: 10,
 
